@@ -1,0 +1,27 @@
+<aura:component controller ="PatientCaregiverController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<!-- Attribute to hold patients -->
+    <aura:attribute name="patients" type="List"></aura:attribute>
+    
+    <!-- Handler to initialize data -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!-- fired from PatientTile -->
+    <aura:handler name="PatientSelect" event="c:PatientSelect" action="{!c.onPatientSelect}" />
+    
+    <!-- Iterate over patients to display tiles -->
+    <lightning:layout multipleRows="true" horizontalAlign="space" class="slds-scrollable_y">
+        <lightning:card class="slds-text-align_center" title="Your Assigned Patients">
+            <aura:iteration items="{!v.patients}" var="patient">
+            <lightning:layoutItem padding="around-small" size="2" flexibility="grow" class="slds-m-right_small slds-m-bottom_small">
+                <c:PatientTile patient="{!patient}" selected="{!(v.selectedPatientId == patient.Id)}"/>
+            </lightning:layoutItem>
+        </aura:iteration>
+        </lightning:card>
+        
+        <aura:if isTrue="{!lessthan(v.patients.length, 1)}">
+                <lightning:layoutItem flexibility="auto" class="slds-align_absolute-center" padding="around-small">
+                    <lightning:formattedText value="No Patients Found" />
+                </lightning:layoutItem>
+            </aura:if>
+    </lightning:layout>
+</aura:component>

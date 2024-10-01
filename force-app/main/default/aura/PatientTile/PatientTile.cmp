@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="patient" type="Contact"/>
+    <aura:attribute name="selected" type="Boolean" default="false"/>
+    
+    <!-- On Patient selection -->
+    <aura:registerEvent name="PatientSelect" type="c:PatientSelect"/>
+    <aura:registerEvent name="SelectedPatient" type="c:SelectedPatient" />
+    
+    <lightning:button class="{! v.selected ? 'tile selected' : 'tile'}" onclick="{!c.onPatientClick}">
+        <div style="{!'background-image: url(\'' + v.patient.Profile_Pic__c +'\')'}" class="innerTile">
+            <div class="lower-third">   
+                <h1 class="slds-truncate">{!v.patient.Name}</h1>
+            </div>
+        </div>
+    </lightning:button>
+</aura:component>

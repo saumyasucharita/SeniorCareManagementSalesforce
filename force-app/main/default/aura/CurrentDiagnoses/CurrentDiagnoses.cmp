@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="CurrentDiagnosesController">
+    <!-- Attributes -->
+    <aura:attribute name="currentDiagnoses" type="Object"></aura:attribute>
+    <aura:attribute name="recordId" type="String" default="003ak000005n24DAAQ"/>
+    <!-- Handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card title="Current Diagnoses">
+        <lightning:layout multipleRows="true">
+            <aura:iteration items="{!v.currentDiagnoses}" var="diagnosis">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:card title="{!diagnosis.Name}" iconName="{!diagnosis.primaryDiagnosisIcon}">
+                        <div class="slds-card__body slds-card__body_inner">
+                            <p class="{!diagnosis.primaryDiagnosisClass}">{!diagnosis.primaryDiagnosisLabel}</p>
+                            <p><strong>Effective Date:</strong> {!diagnosis.Effective_Date__c}</p>
+                            <p><strong>Diagnosed by Physician:</strong> {!diagnosis.Diagnosed_by_Physician__r.Name}</p>
+                        </div>
+                    </lightning:card>
+                </lightning:layoutItem>
+            </aura:iteration>
+        </lightning:layout>
+    </lightning:card>
+</aura:component>

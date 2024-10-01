@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Patient Select">
+    <aura:attribute name="patient" type="Contact" />
+</aura:event>

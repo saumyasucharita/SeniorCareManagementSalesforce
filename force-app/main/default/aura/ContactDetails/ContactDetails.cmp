@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="PatientAgeExpController">
+    <!-- Attributes to hold Contact data -->
+    <aura:attribute name="contact" type="Contact"/>
+   <!-- <aura:attribute name="errorMessage" type="String" /> -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!-- Lightning card to display the data -->
+    <lightning:card title="Patient Information" iconName="standard:contact">
+        <div class="slds-p-around_small">
+            <!-- Check if the contact data is available, and display it -->
+                <p><strong>Name:</strong> {!v.contact.Name}</p>
+                <p><strong>Age:</strong> {!v.contact.Age__c} years</p>
+            <!-- <p><strong>Caregiver For Patient:</strong> {!v.contact.Caregiver_for_Patient__c}</p> -->
+        </div>
+    </lightning:card>
+
+</aura:component>

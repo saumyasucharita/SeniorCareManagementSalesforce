@@ -1,0 +1,42 @@
+<aura:component controller="PatientCaregiverController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<!-- Attributes -->
+    <aura:attribute name="patient" type="Contact"/>
+    <aura:attribute name="caregivingDetails" type="Patient_Caregiver__c"/>
+    <aura:attribute name="medicationsAccess" type="Boolean"/>
+    <aura:attribute name="diagnosisAccess" type="Boolean"/>
+    
+    <!-- show details when a Patient(Contact) is selected -->
+	<aura:attribute name="showTabs" type="Boolean" default="true" />
+    <aura:attribute name="selectedTabId" type="String" default="detailstab" />
+    
+    <!-- Handler for patient selection -->
+    <aura:handler event="c:SelectedPatient" action="{!c.onPatientSelected}"/>
+    
+    <!-- Display Patient details -->
+    <lightning:card title="Patient Details">
+        <aura:if isTrue="{!v.showTabs}">
+            <lightning:tabset selectedTabId="{!v.selectedTabId}">
+                <lightning:tab label="Details" id="detailstab">
+                    <c:PatientDetail caregivingDetails="{!v.caregivingDetails}"  />
+                </lightning:tab>
+                <aura:if isTrue="{!v.medicationsAccess}">
+                    <lightning:tab label="Medications">
+                        <c:CurrentMedications recordId="{!v.patient.Id}" />
+                    </lightning:tab>
+                </aura:if>
+                <aura:if isTrue="{!v.diagnosisAccess}">
+                    <lightning:tab label="Diagnosis">
+                        <c:CurrentDiagnoses recordId="{!v.patient.Id}" />
+                    </lightning:tab>
+                </aura:if>            
+            </lightning:tabset>
+            
+            <aura:set attribute="else">
+                <p class="slds-text-align_center"> 
+                   Please Select a Patient to View Details.
+                </p>
+            </aura:set>
+        </aura:if>
+    </lightning:card>
+ 
+</aura:component>

@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="CurrentMedicationsController" access="global" >
+	<!-- Attributes -->
+    <aura:attribute name="currentMedications" type="Object"></aura:attribute>
+    <aura:attribute name="pastMedications" type="Object"></aura:attribute>
+    <aura:attribute name="columns" type="List"/>
+   <!-- <aura:attribute name="recordId" type="String" default="003ak000005n24DAAQ" access="public"/> -->
+    
+    <!-- Handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <lightning:card title="Current Medications">
+        <div class="slds-p=horizontal--small">
+            <lightning:datatable
+                keyField="Id"
+                data = "{!v.currentMedications}"                 
+                columns = "{!v.columns}"
+             />
+        </div>
+    </lightning:card>
+    <lightning:card title="Past Medications">
+        <div class="slds-p=horizontal--small">
+            <lightning:datatable
+                keyField="Id"
+                data = "{!v.pastMedications}"                 
+                columns = "{!v.columns}"
+             />
+        </div>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="caregivingDetails" type="Patient_Caregiver__c"/>
+    
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small">
+            <div>
+                <p><lightning:icon iconName="utility:user" alternativeText="Patient" title="Patient" /><span style="font-weight: bold;">{!v.caregivingDetails.Patient_Id__r.Name}'s Caregiving Details</span></p>
+            </div>
+            <div>
+            <p><strong>Name:</strong> {!v.caregivingDetails.Patient_Id__r.Name}</p>
+            <p><strong>Caregiving Start Date:</strong> {!v.caregivingDetails.Caregiving_Start_Date__c}</p>
+            <p><strong>Primary Caregiver:</strong> {!v.caregivingDetails.Primary_Caregiver__c}</p>
+            <p><strong>Relationship:</strong> {!v.caregivingDetails.Relationship_with_patient__c}</p>
+        </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

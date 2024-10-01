@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Application event">
+    <aura:attribute name="patient" type="Contact"></aura:attribute>
+</aura:event>
